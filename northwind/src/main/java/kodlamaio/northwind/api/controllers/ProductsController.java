@@ -41,4 +41,39 @@ public class ProductsController {
 	public DataResult<Product> getByProductName(@RequestParam String productName){
 		return this.productService.getByProductName(productName);
 	}
+	
+	@GetMapping("/getByProductNameAndCategoryId")
+	public DataResult<Product> getByProductNameAndCategoryId(@RequestParam("productName") String productName,@RequestParam("categoryId") int categoryId){
+		return this.productService.getByProductNameAndCategoryId(productName, categoryId);
+	}
+	
+	@GetMapping("/getByProductNameOrCategoryId")
+	DataResult<List<Product>> getByProductNameOrCategoryId(@RequestParam("productName") String productName,@RequestParam("categoryId") int categoryId){
+		return this.productService.getByProductNameOrCategoryId(productName, categoryId);
+	}
+	
+	@GetMapping("/getByCategoryIdIn")
+	public DataResult<List<Product>> getByCategoryIdIn(@RequestParam("categories") List<Integer> categories){
+		return this.productService.getByCategoryIdIn(categories);
+	}
+	
+	@GetMapping("/getByProductNameContains")
+	DataResult<List<Product>> getByProductNameContains(@RequestParam("productName") String productName){
+		return this.productService.getByProductNameContains(productName);
+	}
+	
+	@GetMapping("/getByProductNameStartsWith")
+	DataResult<List<Product>> getByProductNameStartsWith(@RequestParam("productName") String productName){
+		return this.productService.getByProductNameStartsWith(productName);
+	}
+	
+	@GetMapping("/getAllByPage")
+	DataResult<List<Product>> getAll(int pageNo, int pageSize){
+		return this.productService.getAll(pageNo, pageSize);
+	}
+	
+	@GetMapping("/getAllSorted")
+	public DataResult<List<Product>> getAllSorted(){
+		return this.productService.getAllSorted();
+	}
 }
