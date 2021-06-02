@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.northwind.business.abstracts.ProductService;
 import kodlamaio.northwind.dataAccess.abstracts.ProductDao;
 import kodlamaio.northwind.entities.concrete.Product;
+import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 
 @Service
 public class ProductManager implements ProductService{
@@ -84,5 +85,10 @@ public class ProductManager implements ProductService{
 	public DataResult<List<Product>> getAllSorted() {
 		Sort sort = Sort.by(Sort.Direction.ASC,"productName");
 		return new SuccessDataResult<List<Product>>(this.productDao.findAll(sort),"Data Listed");
+	}
+
+	@Override
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+		return new SuccessDataResult<List<ProductWithCategoryDto>>(this.productDao.getProductWithCategoryDetails(),"Data Listed");
 	}
 }
